@@ -1,0 +1,34 @@
+# A few example tests
+---
+resolvers:
+  - addr: '8.8.8.8'
+    port: 53
+    udp: True
+    tcp: True
+
+  - addr: '8.8.4.4'
+    port: 53
+    udp: True
+    tcp: True
+
+tests:
+  - domain: example.com
+    rdtype: A
+    expected_rcode: NOERROR
+    expected_data: '93.184.216.34'
+    proto: tcp
+    timeout: 0.1
+
+  - domain: example.com
+    rdtype: MX
+    expected_rcode: NOERROR
+    expected_data: '93.184.216.34'
+    proto: tcp
+    timeout: 0.1
+
+  - domain: nxdomain.example.com
+    rdtype: A
+    expected_rcode: NXDOMAIN
+    expected_data: '93.184.216.34'
+    proto: udp
+    timeout: 0.1
